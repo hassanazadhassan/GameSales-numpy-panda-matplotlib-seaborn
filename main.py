@@ -6,9 +6,9 @@ from matplotlib.lines import lineStyles
 
 df = pd.read_csv("VideoGamesSales.csv")
 df = df.drop_duplicates()
-df['Region'] = df['Region'].fillna('North') #Publisher
+df['Region'] = df['Region'].fillna('North')
 df['Publisher'] = df['Publisher'].fillna('Nintendo')
-# df = df[df['Region'].isnull()] #To check null value by column name region
+# df = df[df['Region'].isnull()] #To check null value by column name
 df["NA_Sales"] = df["NA_Sales"].replace('[$]','',regex=True)
 df["Country"] =df["Country"].replace({"USA":"United States"})
 df["Country"] = df["Country"].str.title()
@@ -60,7 +60,7 @@ National_Sales = df.groupby(['Region', 'Country'])["National Sales"].sum().reset
 #
 # plt.show()
 
-
+#Line Chart
 yearly_sales = df.groupby("Year")[["National Sales", "Global Sales"]].sum().reset_index()
 
 fig = plt.figure(figsize=(10, 6))
@@ -75,4 +75,5 @@ plt.ylabel('Sales')
 plt.legend()
 
 plt.grid(True)
+
 plt.show()
